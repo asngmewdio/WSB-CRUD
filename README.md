@@ -1,6 +1,6 @@
 # Choose Your language
-## [English](#-ENG)
-## [Polish](#-PL)
+## [English](#ENG)
+## [Polish](#PL)
 
 # ENG
 
