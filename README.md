@@ -32,11 +32,14 @@ pip install -r requirements.txt
 manage.py makemigrations
 manage.py migrate
 ```
-4. Test the project
+4. Create `superuser` and test the project
 
 ```
+manage.py createsuperuser
 manage.py runserver
 ```
+
+5. Add `superuser` to representatives
 
 
 ## License
@@ -90,11 +93,14 @@ pip install -r requirements.txt
 manage.py makemigrations
 manage.py migrate
 ```
-4. Przetestuj projekt
+4. Utwórz `superuser` i przetestuj projekt
 
 ```
+manage.py createsuperuser
 manage.py runserver
 ```
+
+5. Dodaj `superuser` do representatives
 
 ## Licencja
 
