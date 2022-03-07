@@ -17,7 +17,7 @@ class Student(models.Model): # If required delete blank=True
     )
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
-    identityNumber = models.CharField(max_length=10, blank=True)
+    identityNumber = models.CharField(max_length=10, blank=True) # Can be changed to Float
     address = models.CharField(max_length=200, blank=True)
     department = models.CharField(max_length=3, choices=DEPARTMENTS)
     average_grade = models.FloatField(blank=True, null=True, validators=[MinValueValidator(0), MaxValueValidator(5)])
