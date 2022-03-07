@@ -1,56 +1,30 @@
-from multiprocessing import context
-from urllib import request
-from django.shortcuts import redirect, render
-from django.http import HttpResponse
+from django.views import View
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 from .models import Student
-from .forms import StudentModelForm
 
-def home_page(request):
-    return HttpResponse("Hello homepage")
+class StudentBaseView(View):
+    model = Student
+    fields = '__all__'
+    success_url = reverse_lazy('students:all')
 
-def cool_stuff_page(request):
-    students = Student.objects.all()
-    context= {
-        "students": students
-    }
-    return render(request, "cool_stuff.html", context)
+class StudentListView(StudentBaseView, ListView):
+    """View to list all students.
+    Use the 'student_list' variable in the template
+    to access all Student objects"""
 
-def student_all_page(request):
-    students = Student.objects.all()
-    context= {
-        "students": students
-    }
-    return render(request, "student_all.html", context)
+class StudentDetailView(StudentBaseView, DetailView):
+    """View to list the details from one Student.
+    Use the 'Student' variable in the template to access
+    the specific Student here and in the Views below"""
 
-def student_detail_page(request, pk):
-        student = Student.objects.get(id=pk)
-        context = {
-            "student": student
-        }
-        return render(request, "student_detail.html", context)
+class StudentCreateView(StudentBaseView, CreateView):
+    """View to create a new student"""
 
-def student_create_page(request):
-    form = StudentModelForm()
-    if request.method == "POST":
-        form = StudentModelForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("/student/all")
-    context = {
-        "form": form
-    }
-    return render(request, "student_create.html", context)
+class StudentUpdateView(StudentBaseView, UpdateView):
+    """View to update a student"""
 
-def student_update_page(request, pk):
-    student = Student.objects.get(id=pk)
-    form = StudentModelForm(instance=student)
-    if request.method == "POST":
-        form = StudentModelForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("/student/all")
-    context = {
-        "form": form,
-        "student": student
-    }
-    return render(request, "student_update.html", context)
+class StudentDeleteView(StudentBaseView, DeleteView):
+    """View to delete a student"""

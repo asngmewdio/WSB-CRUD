@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for student in student_list %}
+    {% for colname in student.column_set.all  %}
+        <p>{{colname}}</p>
+    {% endfor %}
+{% endfor %}
+
+
+<div class="container d-flex mt-5" style="width: 70%;">
+    <div class="col">
+        <h1 class="text-center">All Students</h1>
+        <table class="table table-striped mt-5">
+            <thead>
+                <tr>
+                    {% comment %} <th>#</th> {% endcomment %}
+                    <th class="text-center" scope="col">Name</th>
+                    <th class="text-center" scope="col">Identity number</th>
+                    <th class="text-center" scope="col">Department</th>
+                    <th class="text-center" scope="col">Average grade</th>
+                    <th class="text-center" scope="col">Representative</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for student in student_list %}
+                <tr>
+                    {% comment %} <th scope="row">{{forloop.counter}}</th> {% endcomment %}
+                    <td class="ml-5"><a href="{% url 'students:student_detail' student.id %}">{{student.first_name}} {{student.last_name}}</a></td>
+                    <td class="text-center">{{student.identityNumber}}</td>
+                    <td class="text-center">{{student.department}}</td>
+                    <td class="text-center">{{student.average_grade | floatformat:2}}</td>
+                    <td class="text-center">{{student.representative}}</td>
+                    <td><a href="{% url 'students:student_update' student.id %}">Update</a></td>
+                    <td><a href="{% url 'students:student_delete' student.id %}">Delete</a></td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-center">
+            <a href="{% url 'students:student_create' %}" class="d-block btn btn-primary btn-lg my-5">Add New</a>
+        </div>
+    </div>
+
+</div>
+
+{% endblock content %}

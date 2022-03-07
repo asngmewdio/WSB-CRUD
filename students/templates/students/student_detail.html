@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5" style="width: 70%;">
+    <div class="col">
+        <h1 class="text-center">Student Details</h1>
+        <div class="d-flex justify-content-center">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered table-sm ">
+                  <tbody>
+                    <tr>
+                      <td style="min-width:200px">Name</td>
+                      <td style="min-width:200px">{{student.first_name}}</td>
+                    </tr>
+                    <tr>
+                      <td>Surname</td>
+                      <td>{{student.last_name}}</td>
+                    </tr>
+                    <tr>
+                      <td>Identity number</td>
+                      <td>{{student.identityNumber}}</td>
+                    </tr>
+                    <tr>
+                      <td>Address</td>
+                      <td>{{student.address}}</td>
+                    </tr>
+                    <tr>
+                      <td>Department</td>
+                      <td>{{student.department}}</td>
+                    </tr>
+                    <tr>
+                      <td>Average grade</td>
+                      <td>{{student.average_grade | floatformat:2}}</td>
+                    </tr>
+                    <tr>
+                      <td>Representative</td>
+                      <td>{{student.representative}}</td>
+                    </tr>
+                  </tbody>
+
+                  <caption>
+                    Captions of the table
+                  </caption>
+
+                </table>
+
+                <table class="table table-striped mt-5" style="width: 50%">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for label, value in film.get_fields  %}
+                            <tr>
+                                <td>{{label | upper}}</td>
+                                <td>{{value}}</td>
+                            </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+              </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <a href="{% url 'students:all' %}" class="d-block btn btn-primary btn-lg my-5">BACK</a>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock  %}

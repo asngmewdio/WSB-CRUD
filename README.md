@@ -29,18 +29,28 @@ pip install -r requirements.txt
 3. Every after change `models.py` you need to make migrations into `db.sqlite3` (database) to create the table for the new model
 
 ```
-manage.py makemigrations
-manage.py migrate
+python manage.py makemigrations
+python manage.py migrate
 ```
+
+3. If it doesn't create the `students student` or` students representative` table, do migrations with sync
+
+```
+python manage.py migrate --run-syncdb
+```
+
 4. Create `superuser` and test the project
 
 ```
-manage.py createsuperuser
-manage.py runserver
+python manage.py createsuperuser
+python manage.py runserver
 ```
 
-5. Add `superuser` to representatives
+5. If you want to add students from `.csv` run command --Currently not working
 
+```
+python manage.py runscript load_students
+```
 
 ## License
 
@@ -53,14 +63,6 @@ Wojciech Jarczak - [github.com/wjarczak](https://github.com/wjarczak)
 
 ## Project Link
 [github.com/wjarczak/WSB-CRUD](https://github.com/wjarczak/WSB-CRUD)
-
-
-
-
-
-
-
-
 
 # PL
 
@@ -90,23 +92,33 @@ pip install -r requirements.txt
 3. Po każdej zmianie `models.py` należy dokonywać migracji do `db.sqlite3` (baza danych), aby utworzyć tabelę dla nowego modelu
 
 ```
-manage.py makemigrations
-manage.py migrate
+python manage.py makemigrations
+python manage.py migrate
 ```
+
+3. Jeżeli nie utworzy tabeli `students_student` lub `students_representative` to wykonaj migracje z synchronizacją
+
+```
+python manage.py migrate --run-syncdb
+```
+
 4. Utwórz `superuser` i przetestuj projekt
 
 ```
-manage.py createsuperuser
-manage.py runserver
+python manage.py createsuperuser
+python manage.py runserver
 ```
 
-5. Dodaj `superuser` do representatives
+5. Jezeli chcesz dodac studentów z pliku `.csv` uruchom komendę --Aktualnie nie działa
+
+```
+python manage.py runscript load_students
+```
 
 ## Licencja
 
 Projekt dystrybuowany jest na licencji MIT.
 
-<!-- CONTRIBUTORS -->
 ## Twórca kodu
 
 Projekt istnieje dzięki:\
